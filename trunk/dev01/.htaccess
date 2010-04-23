@@ -1,0 +1,16 @@
+Options All +Indexes
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -f [NC,OR]
+RewriteCond %{REQUEST_FILENAME} -d [NC]
+RewriteRule .* - [L]
+
+RewriteRule ^([^/\.]+)/?$  index.php?view=$1 [L,NC]
+
+RewriteRule ^([^/\.]+)/([^/\.]+)/?$  index.php?view=$1&id=$2 [L,NC]
+
+RewriteRule ^([^/\.]+)/([^/\.]+)/([^\.]+)/?$  index.php?view=$1&id=$2&ext=$3 [L,NC]
+
+
+RedirectMatch 404 /app(/|$)
+
+ErrorDocument 404 /view/404.php
